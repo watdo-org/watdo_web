@@ -45,7 +45,13 @@
             bind:code
             language="plaintext"
             theme="vs"
-            onSave={() => {}}
+            onSave={async () => {
+                await Server.fetch(
+                    `/blocks/${selectedBlock!["id"]}`,
+                    "PUT",
+                    { "code": code }
+                );
+            }}
         />
     </div>
 </div>
