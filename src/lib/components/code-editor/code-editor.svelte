@@ -13,7 +13,7 @@
     export let keyBinds: ((e: Monaco.IKeyboardEvent) => any)[] = [];
 
     export function syncCode() {
-        model.setValue(code);
+        model?.setValue(code);
     }
 
     export function isChanged() {
