@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  getIdToken,
   type User,
 } from "firebase/auth";
 
@@ -48,4 +49,19 @@ export async function signInWithEmail(email: string, password: string) {
 
 export function onAuthStateChange(callback: (user: User | null) => void) {
   return onAuthStateChanged(auth, callback);
+}
+
+export async function getUserIdToken(): Promise<string | null> {
+  try {
+    const user = auth.currentUser;
+    if (!user) {
+      return null;
+    }
+
+    const token = await getIdToken(user);
+    return token;
+  } catch (error) {
+    console.error("Error getting ID token:", error);
+    return null;
+  }
 }
