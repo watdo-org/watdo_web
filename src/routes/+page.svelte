@@ -1,7 +1,7 @@
 <script lang="ts">
     import FirebaseAuth, { type User } from "$lib/firebase/auth";
-    import Login from "$lib/components/Login.svelte";
-    import Home from "$lib/components/Home.svelte";
+    import Login from "./Login.svelte";
+    import Home from "./Home.svelte";
 
     let user: User | null = $state(null);
     let isLoading: boolean = $state(true);
