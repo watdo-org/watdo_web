@@ -33,7 +33,12 @@
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
-			"esbuild"
+			"@firebase/util",
+			"esbuild",
+			"protobufjs"
 		]
+	},
+	"dependencies": {
+		"firebase": "^12.1.0"
 	}
 }
