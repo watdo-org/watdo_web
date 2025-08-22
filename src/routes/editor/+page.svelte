@@ -37,6 +37,19 @@
                 {block["parsed"]["title"]}
             </button>
         {/each}
+
+        <button
+            class="absolute top-2 left-2 cursor-pointer"
+            onclick={async () => {
+                await Server.fetch(
+                    `/blocks/`,
+                    "POST",
+                    { "code": "Title: New block...\nSchedule: set" }
+                );
+                const res = await Server.fetch("/blocks/");
+                blocks = await res.json();
+            }}
+        >New Block</button>
     </div>
 
     <div class="grow h-[600px]">
@@ -51,6 +64,8 @@
                     "PUT",
                     { "code": code }
                 );
+                const res = await Server.fetch("/blocks/");
+                blocks = await res.json();
             }}
         />
     </div>
