@@ -3,6 +3,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  type User,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -42,4 +44,8 @@ export async function signInWithEmail(email: string, password: string) {
   } catch (error: any) {
     return { success: false, error: error.message };
   }
+}
+
+export function onAuthStateChange(callback: (user: User | null) => void) {
+  return onAuthStateChanged(auth, callback);
 }
