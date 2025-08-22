@@ -1,9 +1,20 @@
 <script lang="ts">
     import FirebaseAuth from "$lib/firebase/auth";
+    import CodeEditor from "$lib/components/code-editor/code-editor.svelte";
+
+    let editor: CodeEditor | undefined | null;
+
+    $effect(() => {
+        if (editor) {
+            editor.setup();
+        }
+    });
 
     async function handleSignOut() {
         await FirebaseAuth.signOut();
     }
+
+    let editorContent = "Welcome to WatDo!\n\nThis is a plain text editor powered by Monaco Editor.\nYou can start typing here to create your content.\n\nFeatures:\n- Plain text editing\n- Line numbers\n- Word wrap\n- Responsive design";
 </script>
 
 <div class="home-container">
@@ -14,11 +25,14 @@
         </button>
     </div>
 
-    <div class="welcome-section">
-        <p>You are logged in as: {FirebaseAuth.user?.email}</p>
-        <div class="placeholder-content">
-            <p>This is your home page. Content will be added here later.</p>
-        </div>
+    <div class="w-full h-[600px]">
+        <CodeEditor
+            bind:this={editor}
+            bind:code={editorContent}
+            language="plaintext"
+            theme="vs"
+            onSave={() => {}}
+        />
     </div>
 </div>
 

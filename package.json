@@ -39,6 +39,7 @@
 		]
 	},
 	"dependencies": {
-		"firebase": "^12.1.0"
+		"firebase": "^12.1.0",
+		"monaco-editor": "^0.52.2"
 	}
 }
