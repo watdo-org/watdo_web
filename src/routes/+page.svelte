@@ -1,7 +1,7 @@
 <script lang="ts">
     import FirebaseAuth, { type User } from "$lib/firebase/auth";
     import Login from "./Login.svelte";
-    import Home from "./Home.svelte";
+    import Timeline from "./Timeline.svelte";
 
     let user: User | null = $state(null);
     let isLoading: boolean = $state(true);
@@ -18,7 +18,7 @@
         <p class="text-gray-600 text-base">Loading...</p>
     </div>
 {:else if user}
-    <Home />
+    <Timeline />
 {:else}
     <Login />
 {/if}
