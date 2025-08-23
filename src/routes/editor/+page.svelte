@@ -15,9 +15,13 @@
         }
     });
 
-    onMount(async () => {
-        const res = await Server.fetch("/blocks/");
+    async function fetch() {
+        const res = await Server.fetch("/blocks/?parse_if_possible=1");
         blocks = await res.json();
+    }
+
+    onMount(async () => {
+        await fetch();
     });
 </script>
 
@@ -46,8 +50,7 @@
                     "POST",
                     { "code": "Title: New block...\nSchedule: set" }
                 );
-                const res = await Server.fetch("/blocks/");
-                blocks = await res.json();
+                await fetch();
             }}
         >New Block</button>
     </div>
@@ -64,8 +67,7 @@
                     "PUT",
                     { "code": code }
                 );
-                const res = await Server.fetch("/blocks/");
-                blocks = await res.json();
+                await fetch();
             }}
         />
     </div>

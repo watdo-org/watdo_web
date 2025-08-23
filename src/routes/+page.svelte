@@ -7,7 +7,7 @@
     let activeBlocks = $state([]);
 
     onMount(async () => {
-        const res = await Server.fetch("/blocks/");
+        const res = await Server.fetch("/blocks/?parse_if_possible=1");
         blocks = await res.json();
 
         for (const block of blocks) {
