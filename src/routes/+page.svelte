@@ -2,15 +2,18 @@
     import { onMount } from "svelte";
     import Server from "$lib/server";
     import TopBar from "$lib/components/TopBar.svelte";
+    import { type BlockJSON } from ".";
 
-    let blocks = $state([]);
-    let activeBlocks = $state([]);
+    let blocks: BlockJSON[] = $state([]);
+    let activeBlocks: string[] = $state([]);
 
     onMount(async () => {
         const res = await Server.fetch("/blocks/?parse_if_possible=1");
         blocks = await res.json();
 
         for (const block of blocks) {
+            if (block["parsed"] === null) continue;
+
             const res = await Server.fetch(
                 `/blocks/${block["id"]}/call/evaluate_schedule`,
                 "POST",

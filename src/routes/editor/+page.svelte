@@ -3,10 +3,11 @@
     import Server from "$lib/server";
     import CodeEditor from "$lib/components/code-editor/code-editor.svelte";
     import TopBar from "$lib/components/TopBar.svelte";
+    import { type BlockJSON } from "../";
 
-    let blocks = $state([]);
+    let blocks: BlockJSON[] = $state([]);
     let editor: CodeEditor | undefined | null;
-    let selectedBlock = $state(null);
+    let selectedBlock: BlockJSON | null = $state(null);
     let code = $state("");
 
     $effect(() => {
@@ -38,7 +39,7 @@
                     editor?.syncCode();
                 }}
             >
-                {block["parsed"]["title"]}
+                {block["parsed"] === null ? "⚠️ Error ⚠️" : block["parsed"]["title"]}
             </button>
         {/each}
 
