@@ -17,17 +17,17 @@
             >
                 Timeline
             </button>
-            <button class="m-4 cursor-pointer text-neutral-600">
-                Blocks
-            </button>
             <button
                 class="m-4 cursor-pointer text-neutral-600"
                 onclick={() => goto(resolve("/editor"))}
             >
                 Editor
             </button>
-            <button class="m-4 cursor-pointer text-neutral-600">
-                Help
+            <button
+                class="m-4 cursor-pointer text-neutral-600"
+                onclick={() => goto(resolve("/variables"))}
+            >
+                Variables
             </button>
         </div>
 

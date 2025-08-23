@@ -56,7 +56,7 @@
         >New Block</button>
     </div>
 
-    <div class="grow h-[600px]">
+    <div class="grow h-[calc(100vh-56px)]">
         <CodeEditor
             bind:this={editor}
             bind:code
@@ -69,6 +69,7 @@
                     { "code": code }
                 );
                 await fetch();
+                alert("Saved!");
             }}
         />
     </div>
