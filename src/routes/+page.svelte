@@ -42,16 +42,31 @@
                 <div class="w-full relative">
                     <pre>{JSON.stringify(block["parsed"], null, "\t")}</pre>
 
-                    <button
-                        class="absolute top-0 right-0 cursor-pointer"
-                        onclick={async () => {
-                            await Server.fetch(
-                                `/blocks/${block["id"]}/call/apply_action`,
-                                "POST",
-                                { "action": "remove" }
-                            );
-                        }}
-                    >Remove</button>
+                    <div class="absolute top-0 right-0 flex gap-2">
+                        <button
+                            class="cursor-pointer bg-gray-300 rounded p-1 text-sm"
+                            onclick={async () => {
+                                await Server.fetch(
+                                    `/blocks/${block["id"]}/call/apply_action`,
+                                    "POST",
+                                    { "action": "dismiss" }
+                                );
+                                window.location.reload();
+                            }}
+                        >Dismiss</button>
+
+                        <button
+                            class="cursor-pointer bg-green-300 rounded p-1 text-sm"
+                            onclick={async () => {
+                                await Server.fetch(
+                                    `/blocks/${block["id"]}/call/apply_action`,
+                                    "POST",
+                                    { "action": "done" }
+                                );
+                                window.location.reload();
+                            }}
+                        >Done</button>
+                    </div>
                 </div>
             {/if}
         {/each}
