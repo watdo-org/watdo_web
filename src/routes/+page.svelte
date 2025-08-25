@@ -12,7 +12,10 @@
         blocks = await res.json();
 
         for (const block of blocks) {
-            if (block["parsed"] === null) continue;
+            if (block["parsed"] === null) {
+                alert("⚠️ Error ⚠️");
+                continue;
+            }
 
             const res = await Server.fetch(
                 `/blocks/${block["id"]}/call/evaluate_schedule`,
